@@ -1,0 +1,21 @@
+{
+    "name": "github",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "start": "java -classpath src ScoreCalculator",
+        "dev": "java-dev -classpath src ScoreCalculator"
+    },
+    "dependencies": {
+        "@types/node-fetch": "^2.5.12",
+        "cheerio": "^1.0.0-rc.10",
+        "java-without-the-tears": "^1.0.8",
+        "node-fetch": "2.6.1",
+        "octokit": "^1.5.0"
+    },
+    "devDependencies": {
+        "@octokit/types": "^6.26.0",
+        "@types/cheerio": "^0.22.30",
+        "typescript": "^4.4.2"
+    }
+}
