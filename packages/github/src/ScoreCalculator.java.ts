@@ -2,13 +2,15 @@ import { Octokit } from "octokit"
 import ExtendedMath from "./ExtendedMath.java"
 import Score from "./scores/Score.java"
 import TotalContributionScore from "./scores/TotalContributionScore.java"
+import TotalGivenStarsScore from "./scores/TotalGivenStarsScore.java"
 import { User } from "./types"
 
 export default class ScoreCalculator {
     private static scores: (
         new (...args: ConstructorParameters<typeof Score>) => Score
     )[] = [
-        TotalContributionScore
+        TotalContributionScore,
+        TotalGivenStarsScore
     ]
     private api = new Octokit()
 
@@ -29,6 +31,7 @@ export default class ScoreCalculator {
             throw new Error(`User '${username}' not found`)
         }
         const scores = await this.collectScores(user)
+        console.log({ scores })
         return ExtendedMath.sum(scores)
     }
 

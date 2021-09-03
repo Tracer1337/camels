@@ -3,7 +3,7 @@ import fetch from "node-fetch"
 import Score from "./Score.java"
 
 export default class TotalContributionScore extends Score {
-    private static readonly CONTRIBUTION_SELECTOR = ".position-relative > h2.f4.text-normal.mb-2"
+    private static readonly SELECTOR = ".position-relative > h2.f4.text-normal.mb-2"
     
     public async getScore() {
         const contributions = await this.fetchContributions()
@@ -16,7 +16,7 @@ export default class TotalContributionScore extends Score {
             throw new Error("Failed to fetch contributions")
         }
         const $ = cheerio.load(await res.text())
-        const matches = $(TotalContributionScore.CONTRIBUTION_SELECTOR)
+        const matches = $(TotalContributionScore.SELECTOR)
             .text().match(/[\d,]+/)
         if (!matches) {
             throw new Error("No contributions found")
