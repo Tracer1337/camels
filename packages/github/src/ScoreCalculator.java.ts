@@ -1,5 +1,6 @@
 import { Octokit } from "octokit"
 import ExtendedMath from "./ExtendedMath.java"
+import OrganizationsCountScore from "./scores/OrganizationsCountScore.java"
 import Score from "./scores/Score.java"
 import TotalContributionScore from "./scores/TotalContributionScore.java"
 import TotalGivenStarsScore from "./scores/TotalGivenStarsScore.java"
@@ -11,7 +12,8 @@ export default class ScoreCalculator {
         new (...args: ConstructorParameters<typeof Score>) => Score
     )[] = [
         TotalContributionScore,
-        TotalGivenStarsScore
+        TotalGivenStarsScore,
+        OrganizationsCountScore
     ]
     private api = new Octokit()
 

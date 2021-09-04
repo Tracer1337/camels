@@ -1,0 +1,18 @@
+import fetch from "node-fetch"
+import Score from "./Score.java"
+
+export default class OrganizationsCountScore extends Score {
+    public async getScore() {
+        const organizationsCount = await this.getOrganizationsCount()
+        return Math.min(organizationsCount / 3, 2)
+    }
+
+    private async getOrganizationsCount() {
+        const res = await fetch(this.user.organizations_url as string)
+        if (res.status !== 200) {
+            throw new Error("Failed to fetch organizations")
+        }
+        const orgs = await res.json()
+        return orgs.length
+    }
+}
