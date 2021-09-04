@@ -1,5 +1,6 @@
 import cheerio from "cheerio"
 import fetch from "node-fetch"
+import ExtendedMath from "../ExtendedMath.java"
 import Score from "./Score.java"
 
 export default class TotalContributionScore extends Score {
@@ -7,7 +8,7 @@ export default class TotalContributionScore extends Score {
     
     public async getScore() {
         const contributions = await this.fetchContributions()
-        return Math.log10(contributions)
+        return ExtendedMath.safeLog10(contributions)
     }
 
     private async fetchContributions() {
