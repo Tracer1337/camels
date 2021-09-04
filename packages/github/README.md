@@ -14,4 +14,4 @@ Your Commits In Repository / All Commits In Repository
 - [x] min(Total Given Stars / 500, 1)
 - [x] max(log10(Followers - Following), 0)
 - [ ] log10(sum(Repository Stars * Repository Contribution))
-- [ ] sum(Repository Commits * Repository Contribution / 1000)
+- [x] sum(Repository Commits * Repository Contribution) / 1000

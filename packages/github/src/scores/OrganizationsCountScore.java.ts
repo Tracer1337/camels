@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+import Utils from "../Utils.java"
 import Score from "./Score.java"
 
 export default class OrganizationsCountScore extends Score {
@@ -8,11 +8,15 @@ export default class OrganizationsCountScore extends Score {
     }
 
     private async fetchOrganizationsCount() {
-        const res = await fetch(this.user.organizations_url as string)
-        if (res.status !== 200) {
+        const [error, response] = await Utils.promise(
+            this.api.rest.orgs.listForUser({
+                per_page: 6,
+                username: this.user.login as string
+            })
+        )
+        if (error) {
             throw new Error("Failed to fetch organizations")
         }
-        const orgs = await res.json()
-        return orgs.length
+        return response.data.length
     }
 }

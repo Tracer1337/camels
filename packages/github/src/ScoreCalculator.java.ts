@@ -7,6 +7,7 @@ import FollowersCountScore from "./scores/FollowersCountScore.java"
 import OrganizationsCountScore from "./scores/OrganizationsCountScore.java"
 import TotalContributionScore from "./scores/TotalContributionScore.java"
 import TotalGivenStarsScore from "./scores/TotalGivenStarsScore.java"
+import RepositoryCommitsScore from "./scores/RepositoryCommitsScore.java"
 
 export default class ScoreCalculator {
     private static scores: (
@@ -15,20 +16,27 @@ export default class ScoreCalculator {
         TotalContributionScore,
         TotalGivenStarsScore,
         OrganizationsCountScore,
-        FollowersCountScore
+        FollowersCountScore,
+        RepositoryCommitsScore
     ]
-    private api = new Octokit()
+
+    private api: Octokit
 
     public static async main(args: string[]) {
         console.log({ args })
         const username = args[0]
-        const scoreCalculator = new ScoreCalculator(username)
+        const scoreCalculator = new ScoreCalculator(
+            username,
+            process.env.PERSONAL_ACCESS_TOKEN
+        )
         console.log({
             score: await scoreCalculator.getScore()
         })
     }
 
-    constructor(private username: string) {}
+    private constructor(private username: string, token: string) {
+        this.api = new Octokit({ auth: token })
+    }
 
     public async getScore() {
         const [error, response] = await Utils.promise(
@@ -46,7 +54,7 @@ export default class ScoreCalculator {
 
     private collectScores(user: User) {
         return Promise.all(
-            ScoreCalculator.scores.map((Score) => new Score(user).getScore())
+            ScoreCalculator.scores.map((Score) => new Score(this.api, user).getScore())
         )
     }
 }
