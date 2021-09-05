@@ -36,7 +36,7 @@ export default class ScoreCalculator {
         })
     }
 
-    private constructor(private username: string, token: string) {
+    constructor(private username: string, token: string) {
         this.api = new Octokit({ auth: token })
     }
 
