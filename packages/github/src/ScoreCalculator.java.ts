@@ -25,13 +25,13 @@ export default class ScoreCalculator {
     private api: Octokit
 
     public static async main(args: string[]) {
-        console.log({ args })
+        Utils.debug({ args })
         const username = args[0]
         const scoreCalculator = new ScoreCalculator(
             username,
             process.env.PERSONAL_ACCESS_TOKEN
         )
-        console.log({
+        Utils.debug({
             score: await scoreCalculator.getScore()
         })
     }
@@ -50,7 +50,7 @@ export default class ScoreCalculator {
             throw new Error(`User '${this.username}' not found`)
         }
         const scores = await this.collectScores(response.data)
-        console.log({ scores })
+        Utils.debug({ scores })
         return ExtendedMath.sum(scores)
     }
 

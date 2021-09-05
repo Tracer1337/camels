@@ -17,4 +17,10 @@ export default class Utils {
         }
         return cheerio.load(await res.text())
     }
+
+    public static debug(...args: Parameters<typeof console["log"]>) {
+        if (process.env.NODE_ENV === "development") {
+            console.log(...args)
+        }
+    }
 }
