@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express"
 import cors from "cors"
 import ScoreCalculator from "github/dist/ScoreCalculator.java"
+import Discovery from "github/dist/Discovery.java"
 import Utils from "common/dist/Utils.java"
 
 export default class Server {
@@ -22,7 +23,38 @@ export default class Server {
 
     private boot(app: Express) {
         app.use(cors())
-        app.get("/score/github/:username", this.handleGithubScore.bind(this))
+        app.get(
+            "/discovery/github/:username",
+            this.handleGithubUserDiscovery.bind(this)
+        )
+        app.get(
+            "/score/github/:username",
+            this.validateUsername.bind(this),
+            this.handleGithubScore.bind(this)
+        )
+    }
+
+    private async validateUsername(req: Request, res: Response, next: Function) {
+        const username = req.params.username
+        const discovery = new Discovery(
+            process.env.PERSONAL_ACCESS_TOKEN
+        )
+        const user = await discovery.findUser(username)
+        if (!user) {
+            return void res.sendStatus(404)
+        }
+        next()
+    }
+
+    private async handleGithubUserDiscovery(req: Request, res: Response) {
+        const username = req.params.username
+        const discovery = new Discovery(
+            process.env.PERSONAL_ACCESS_TOKEN
+        )
+        const user = await discovery.findUser(username)
+        res.send({
+            data: user
+        })
     }
 
     private async handleGithubScore(req: Request, res: Response) {
