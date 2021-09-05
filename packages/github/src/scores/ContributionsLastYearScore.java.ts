@@ -15,7 +15,7 @@ export default class ContributionsLastYearScore extends Score {
         const matches = $(ContributionsLastYearScore.SELECTOR)
             .text().match(/[\d,]+/)
         if (!matches) {
-            throw new Error("No contributions found")
+            return 0
         }
         return parseInt(matches[0].replace(/,/g, ""))
     }

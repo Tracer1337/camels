@@ -13,7 +13,7 @@ export default class TotalGivenStarsScore extends Score {
         const $ = await Utils.fetchCheerio(this.user.html_url as string)
         const text = $(this.SELECTOR).text()
         if (!text) {
-            throw new Error("No text found")
+            return 0
         }
         return parseInt(text)
     }
