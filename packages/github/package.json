@@ -10,6 +10,7 @@
         "@types/node-fetch": "^2.5.12",
         "cheerio": "^1.0.0-rc.10",
         "java-without-the-tears": "^1.0.8",
+        "moment": "^2.29.1",
         "node-fetch": "2.6.1",
         "octokit": "^1.5.0"
     },

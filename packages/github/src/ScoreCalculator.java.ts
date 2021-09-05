@@ -5,19 +5,21 @@ import Utils from "./Utils.java"
 import Score from "./scores/Score.java"
 import FollowersCountScore from "./scores/FollowersCountScore.java"
 import OrganizationsCountScore from "./scores/OrganizationsCountScore.java"
-import TotalContributionScore from "./scores/TotalContributionScore.java"
+import ContributionsLastYearScore from "./scores/ContributionsLastYearScore.java"
 import TotalGivenStarsScore from "./scores/TotalGivenStarsScore.java"
 import PinnedRepoStarsScore from "./scores/PinnedRepoStarsScore.java"
+import IssuesLastYearScore from "./scores/IssuesLastYearScore.java"
 
 export default class ScoreCalculator {
     private static scores: (
         new (...args: ConstructorParameters<typeof Score>) => Score
     )[] = [
-        TotalContributionScore,
+        ContributionsLastYearScore,
         TotalGivenStarsScore,
         OrganizationsCountScore,
         FollowersCountScore,
-        PinnedRepoStarsScore
+        PinnedRepoStarsScore,
+        IssuesLastYearScore
     ]
 
     private api: Octokit

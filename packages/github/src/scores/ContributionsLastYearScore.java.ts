@@ -2,7 +2,7 @@ import ExtendedMath from "../ExtendedMath.java"
 import Utils from "../Utils.java"
 import Score from "./Score.java"
 
-export default class TotalContributionScore extends Score {
+export default class ContributionsLastYearScore extends Score {
     private static readonly SELECTOR = ".position-relative > h2.f4.text-normal.mb-2"
     
     public async getScore() {
@@ -12,7 +12,7 @@ export default class TotalContributionScore extends Score {
 
     private async fetchContributions() {
         const $ = await Utils.fetchCheerio(this.user.html_url as string)
-        const matches = $(TotalContributionScore.SELECTOR)
+        const matches = $(ContributionsLastYearScore.SELECTOR)
             .text().match(/[\d,]+/)
         if (!matches) {
             throw new Error("No contributions found")
