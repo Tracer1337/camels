@@ -7,8 +7,6 @@ import FollowersCountScore from "./scores/FollowersCountScore.java"
 import OrganizationsCountScore from "./scores/OrganizationsCountScore.java"
 import TotalContributionScore from "./scores/TotalContributionScore.java"
 import TotalGivenStarsScore from "./scores/TotalGivenStarsScore.java"
-import RepositoryCommitsScore from "./scores/RepositoryCommitsScore.java"
-import RepositoryStarsScore from "./scores/RepositoryStarsScore.java"
 
 export default class ScoreCalculator {
     private static scores: (
@@ -17,9 +15,7 @@ export default class ScoreCalculator {
         TotalContributionScore,
         TotalGivenStarsScore,
         OrganizationsCountScore,
-        FollowersCountScore,
-        RepositoryCommitsScore,
-        RepositoryStarsScore
+        FollowersCountScore
     ]
 
     private api: Octokit
