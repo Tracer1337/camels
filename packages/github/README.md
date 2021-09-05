@@ -1,11 +1,8 @@
+# GitHub
+
+GitHub account scoring mechanism.
+
 ## Scoring
-
-### Functions
-
-Repository Contribution:  
-Your Commits In Repository / All Commits In Repository
-
-### Scores
 
 - [x] log10(max(Total Commits Last 12 Months, 1))
 - [x] min(Issues Last 12 Months / 15, 2)
