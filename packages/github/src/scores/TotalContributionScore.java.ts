@@ -1,6 +1,5 @@
-import cheerio from "cheerio"
-import fetch from "node-fetch"
 import ExtendedMath from "../ExtendedMath.java"
+import Utils from "../Utils.java"
 import Score from "./Score.java"
 
 export default class TotalContributionScore extends Score {
@@ -12,11 +11,7 @@ export default class TotalContributionScore extends Score {
     }
 
     private async fetchContributions() {
-        const res = await fetch(this.user.html_url as string)
-        if (res.status !== 200) {
-            throw new Error("Failed to fetch contributions")
-        }
-        const $ = cheerio.load(await res.text())
+        const $ = await Utils.fetchCheerio(this.user.html_url as string)
         const matches = $(TotalContributionScore.SELECTOR)
             .text().match(/[\d,]+/)
         if (!matches) {

@@ -1,5 +1,4 @@
-import cheerio from "cheerio"
-import fetch from "node-fetch"
+import Utils from "../Utils.java"
 import Score from "./Score.java"
 
 export default class TotalGivenStarsScore extends Score {
@@ -11,11 +10,7 @@ export default class TotalGivenStarsScore extends Score {
     }
 
     private async fetchStars() {
-        const res = await fetch(this.user.html_url as string)
-        if (res.status !== 200) {
-            throw new Error("Failed to fetch stars")
-        }
-        const $ = cheerio.load(await res.text())
+        const $ = await Utils.fetchCheerio(this.user.html_url as string)
         const text = $(this.SELECTOR).text()
         if (!text) {
             throw new Error("No text found")
