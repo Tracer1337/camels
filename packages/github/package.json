@@ -3,8 +3,9 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "start": "java -classpath src ScoreCalculator",
-        "dev": "java-dev -classpath src ScoreCalculator"
+        "start": "java -classpath dist ScoreCalculator",
+        "dev": "java-dev -classpath src ScoreCalculator",
+        "build": "npx tsc"
     },
     "dependencies": {
         "@types/node-fetch": "^2.5.12",
