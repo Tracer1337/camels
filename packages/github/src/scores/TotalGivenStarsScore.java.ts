@@ -1,4 +1,4 @@
-import Utils from "../Utils.java"
+import Utils from "common/dist/Utils.java"
 import Score from "./Score.java"
 
 export default class TotalGivenStarsScore extends Score {

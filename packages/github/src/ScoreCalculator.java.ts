@@ -1,7 +1,7 @@
 import { Octokit } from "octokit"
 import { User } from "./types"
 import ExtendedMath from "./ExtendedMath.java"
-import Utils from "./Utils.java"
+import Utils from "common/dist/Utils.java"
 import Score from "./scores/Score.java"
 import FollowersCountScore from "./scores/FollowersCountScore.java"
 import OrganizationsCountScore from "./scores/OrganizationsCountScore.java"
