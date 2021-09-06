@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core"
 export default function Header() {
     return (
         <Typography variant="h3">
-            Test
+            How many camels is your GitHub account worth?
         </Typography>
     )
 }
