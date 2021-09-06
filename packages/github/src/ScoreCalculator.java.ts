@@ -28,26 +28,25 @@ export default class ScoreCalculator {
         Utils.debug({ args })
         const username = args[0]
         const scoreCalculator = new ScoreCalculator(
-            username,
             process.env.PERSONAL_ACCESS_TOKEN
         )
         Utils.debug({
-            score: await scoreCalculator.getScore()
+            score: await scoreCalculator.getScore(username)
         })
     }
 
-    constructor(private username: string, token: string) {
+    constructor(token: string) {
         this.api = new Octokit({ auth: token })
     }
 
-    public async getScore() {
+    public async getScore(username: string) {
         const [error, response] = await Utils.promise(
             this.api.rest.users.getByUsername({
-                username: this.username
+                username
             })
         )
         if (error) {
-            throw new Error(`User '${this.username}' not found`)
+            throw new Error(`User '${username}' not found`)
         }
         const scores = await this.collectScores(response.data)
         Utils.debug({ scores })
