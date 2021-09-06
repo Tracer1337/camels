@@ -6,5 +6,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {}
+  "scripts": {
+    "prebuild": "yarn build:common && yarn build:github",
+    "build:common": "yarn workspace common build",
+    "build:github": "yarn workspace github build"
+  }
 }

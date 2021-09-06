@@ -1,0 +1,13 @@
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY .. .
+
+RUN yarn
+RUN yarn prebuild
+RUN yarn workspace server build
+
+ENV NODE_ENV=production
+
+CMD ["yarn", "workspace", "server", "start"]
