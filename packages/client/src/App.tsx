@@ -10,14 +10,9 @@ import Header from "./components/Header"
 
 const useStyles = makeStyles({
     "@global": {
-        html: {
+        body: {
             background: `url(${background}) no-repeat center center fixed`,
             backgroundSize: "cover"
-        },
-        "#root": {
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)"
         }
     }
 })

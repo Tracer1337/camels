@@ -7,6 +7,7 @@ import {
     ButtonBase,
     CircularProgress
 } from "@material-ui/core"
+import { Alert } from "@material-ui/lab"
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { fetchScore, fetchUser } from "../api"
 import API from "../api/types"
@@ -73,7 +74,7 @@ export default function Form() {
 
     return (
         <Grid container spacing={4}>
-            <Grid item xs>
+            <Grid item xs={12} md>
                 <Box mb={4}>
                     <TextField
                         variant="outlined"
@@ -86,6 +87,10 @@ export default function Form() {
                 </Box>
 
                 { isLoadingUser && <CircularProgress/> }
+
+                { username && !isLoadingUser && !user && (
+                    <Alert severity="warning">User not found</Alert>
+                ) }
 
                 { user && (
                     <ButtonBase
@@ -100,7 +105,7 @@ export default function Form() {
                     </ButtonBase>
                 ) }
             </Grid>
-            <Grid item xs>
+            <Grid item xs={12} md>
                 { isLoadingScore && <CircularProgress/> }
 
                 { score !== undefined && user && (
